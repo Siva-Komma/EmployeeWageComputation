@@ -8,6 +8,7 @@ namespace EmployeeWageComputation
 {
     class CheckEmployee
     {
+        public const int Num_of_Working_Days = 20;
         public static void EmployeeCheck()
         {
             int Emp_Present = 1;
@@ -15,23 +16,29 @@ namespace EmployeeWageComputation
             int Is_Part_Time = 2;
             int empHrs = 0;
             int EmpWage = 0;
+            int TotalEmpWage = 0;
 
-            Random random = new Random();
-            int empCheck = random.Next(3);
-            switch(empCheck)
+            for (int day = 0; day < Num_of_Working_Days; day++)
             {
-                case 0:
-                    empHrs = 8;
-                    break;
-                case 1:
-                    empHrs = 4;
-                    break;
-                case 2:
-                    empHrs = 0;
-                    break;
+                Random random = new Random();
+                int empCheck = random.Next(3);
+                switch (empCheck)
+                {
+                    case 0:
+                        empHrs = 8;
+                        break;
+                    case 1:
+                        empHrs = 4;
+                        break;
+                    case 2:
+                        empHrs = 0;
+                        break;
+                }
+                EmpWage = empHrs * Emp_Rate_Per_Hour;
+                TotalEmpWage += EmpWage;
+                Console.WriteLine("Emp Wage: " + EmpWage);
             }
-            EmpWage = empHrs * Emp_Rate_Per_Hour;
-            Console.WriteLine("Emp Wage: " + EmpWage);
+            Console.WriteLine("Toayal Emp Wage: " + TotalEmpWage);
         }
     }
 }
