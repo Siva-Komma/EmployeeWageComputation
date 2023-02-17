@@ -11,7 +11,7 @@ namespace EmployeeWageComputation
     {
         public const int Num_of_Working_Days = 20;
         public const int Max_Hrs_In_Month = 100;
-        public static void EmployeeCheck()
+        public void EmployeeCheck()
         {
             int Emp_Present = 1;
             int Emp_Rate_Per_Hour=20;
