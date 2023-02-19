@@ -9,9 +9,9 @@ namespace EmployeeWageComputation
 {
     class CheckEmployee
     {
-        public const int Num_of_Working_Days = 20;
-        public const int Max_Hrs_In_Month = 100;
-        public void EmployeeCheck()
+       // public const int Num_of_Working_Days = 20;
+       // public const int Max_Hrs_In_Month = 100;
+        public void EmployeeCheck(string Company,int Num_of_Working_Days,int Max_Hrs_In_Month)
         {
             int Emp_Present = 1;
             int Emp_Rate_Per_Hour=20;
@@ -45,7 +45,7 @@ namespace EmployeeWageComputation
                 Console.WriteLine("Emp Wage: " + EmpWage);
             }
             TotalEmpWage = TotalEmpHrs * Emp_Rate_Per_Hour;
-            Console.WriteLine("Toayal Emp Wage: " + TotalEmpWage);
+            Console.WriteLine("Comapany: {0} Number of working days: {1} Max working Hours: {2} Toayal Emp Wage: {3} " ,Company,Num_of_Working_Days, Max_Hrs_In_Month, TotalEmpWage);
         }
     }
 }

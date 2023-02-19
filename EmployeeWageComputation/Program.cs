@@ -12,7 +12,8 @@ namespace EmployeeWageComputation
         {
             Console.WriteLine("Welcome to Employee Wage Computation Problem");
             CheckEmployee checkemployee = new CheckEmployee();
-            checkemployee.EmployeeCheck();
+            checkemployee.EmployeeCheck("Deloitte",20,100);
+            checkemployee.EmployeeCheck("Infosys", 30, 90);
             Console.ReadLine();
         }
     }
