@@ -9,21 +9,29 @@ namespace EmployeeWageComputation
 {
     class CheckEmployee
     {
-       // public const int Num_of_Working_Days = 20;
-       // public const int Max_Hrs_In_Month = 100;
-        public void EmployeeCheck(string Company,int Num_of_Working_Days,int Max_Hrs_In_Month)
+        private  int Num_of_Working_Days ;
+        private  int Max_Hrs_In_Month ;
+        public static int Emp_Present = 1;
+        private int Emp_Rate_Per_Hour;
+        public static int Is_Part_Time = 2;
+        public static int EmpWage = 0;
+        public int TotalEmpWage = 0;
+        private string Company;
+        public CheckEmployee(string Company, int Emp_Rate_Per_Hour, int Num_of_Working_Days, int Max_Hrs_In_Month)
         {
-            int Emp_Present = 1;
-            int Emp_Rate_Per_Hour=20;
-            int Is_Part_Time = 2;
-            int empHrs = 0;
-            int EmpWage = 0;
-            int TotalEmpWage = 0;
-            int TotalEmpHrs = 0;
+            this.Company = Company;
+            this.Emp_Rate_Per_Hour= Emp_Rate_Per_Hour;
+            this.Num_of_Working_Days= Num_of_Working_Days;
+            this.Max_Hrs_In_Month= Max_Hrs_In_Month;
+        }
+            
+        public void EmployeeCheck()
+        {
+            int empHrs = 0,TotalEmpHrs = 0,totalWorkingDays=0; 
 
-
-            while(TotalEmpHrs<Max_Hrs_In_Month && Num_of_Working_Days <= Num_of_Working_Days)
+            while (TotalEmpHrs<this.Max_Hrs_In_Month && totalWorkingDays <= this.Num_of_Working_Days)
             {
+                totalWorkingDays++;
                 Random random = new Random();
                 int empCheck = random.Next(3);
                 switch (empCheck)
@@ -46,6 +54,10 @@ namespace EmployeeWageComputation
             }
             TotalEmpWage = TotalEmpHrs * Emp_Rate_Per_Hour;
             Console.WriteLine("Comapany: {0} Number of working days: {1} Max working Hours: {2} Toayal Emp Wage: {3} " ,Company,Num_of_Working_Days, Max_Hrs_In_Month, TotalEmpWage);
+        }
+        public string toString()
+        {
+            return "Total EmpWages for Company: " + this.Company + "is: " + this.TotalEmpWage;
         }
     }
 }
