@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -31,38 +32,45 @@ namespace EmployeeWageComputation
         {
             this.TotalEmpWage = totalEmpWage;
         }
-        public string tostring()
+        public string toString()
         {
-            return "Total emp wage for company: " +this.company  + "is: " + this.TotalEmpWage;
+            return $"Company: " +this.company  + "EmpratperHour: " +this.Emp_Rate_Per_Hour +"Days"+this.Num_of_Working_Days+"Max Working Hrs" +this.Max_Hrs_In_Month;
         }
 
         public class EmpWageBuliderArray
         {
+            List<CheckEmployee> list;
             public const int Emp_Present = 1;
             public const int Is_Part_Time = 2;
-            private int numOfCompany = 0;
-            private CheckEmployee[] CheckEmpWageArray;
+            //private int numOfCompany = 0;
+           // private CheckEmployee[] CheckEmpWageArray;
 
             public EmpWageBuliderArray()
             {
-                this.CheckEmpWageArray = new CheckEmployee[5];
+                //this.CheckEmpWageArray = new CheckEmployee[5];
+                list = new List<CheckEmployee>();
             }
             public void addCompanyEmpWage(string company, int Emp_Rate_Per_Hour,int Num_of_Working_Days, int Max_Hrs_In_Month)
             {
-                CheckEmpWageArray[this.numOfCompany] = new CheckEmployee(company, Emp_Rate_Per_Hour, Num_of_Working_Days, Max_Hrs_In_Month);
-                numOfCompany++;
+                CheckEmployee emp = new CheckEmployee(company,Emp_Rate_Per_Hour,Num_of_Working_Days,Max_Hrs_In_Month);
+                list.Add(emp);
+               // CheckEmpWageArray[this.numOfCompany] = new CheckEmployee(company, Emp_Rate_Per_Hour, Num_of_Working_Days, Max_Hrs_In_Month);
+               // numOfCompany++;
             }
             public void EmployeeCheck()
             {
-                for(int i=0;i<numOfCompany;i++)
+                for(int i=0;i<list.Count;i++)
                 {
-                    CheckEmpWageArray[i].setTotalEmpWages(this.EmployeeCheck(this.CheckEmpWageArray[i]));
-                    Console.WriteLine(this.CheckEmpWageArray[i].tostring());
+                    int TotalEmpWage = EmployeeCheck(list[i]);
+                    list[i].setTotalEmpWages(TotalEmpWage);
+                    Console.WriteLine(list[i].ToString());
+                    //CheckEmpWageArray[i].setTotalEmpWages(this.EmployeeCheck(this.CheckEmpWageArray[i]));
+                    //Console.WriteLine(this.CheckEmpWageArray[i].tostring());
                 }
             }
             private int EmployeeCheck(CheckEmployee checkEmployee)
             {
-                int empHrs = 0, TotalEmpHrs = 0, totalWorkingDays = 0;
+                int empHrs = 0, TotalEmpHrs = 0, totalWorkingDays = 0,TotalEmpWage=0;
 
                 while (TotalEmpHrs < checkEmployee.Max_Hrs_In_Month && totalWorkingDays <= checkEmployee.Num_of_Working_Days)
                 {
@@ -82,8 +90,9 @@ namespace EmployeeWageComputation
                             break;
                     }
                     EmpWage = checkEmployee.Emp_Rate_Per_Hour * empHrs;
-                    checkEmployee.TotalEmpWage += EmpWage;
                     TotalEmpHrs += empHrs;
+                    checkEmployee.TotalEmpWage += EmpWage;
+                    
                     //Console.WriteLine("Emp Hrs: " + TotalEmpHrs);
                     //Console.WriteLine("Emp Wage: " + EmpWage);
                 }
