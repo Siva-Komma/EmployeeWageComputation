@@ -21,6 +21,9 @@ namespace EmployeeWageComputation
             checkemployee.addCompanyEmpWage("TCS", 20, 25, 10);
             checkemployee.EmployeeCheck();
             Console.WriteLine("Total EmpWages: " + checkemployee.GetTotalWageBasedOnCompany("Deloitte"));
+            Console.WriteLine("Total EmpWages: " + checkemployee.GetTotalWageBasedOnCompany("Bridgelabz"));
+            Console.WriteLine("Total EmpWages: " + checkemployee.GetTotalWageBasedOnCompany("Wipro"));
+            Console.WriteLine("Total EmpWages: " + checkemployee.GetTotalWageBasedOnCompany("HCL"));
             Console.ReadLine();
         }
     }

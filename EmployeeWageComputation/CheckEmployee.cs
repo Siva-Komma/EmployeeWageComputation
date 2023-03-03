@@ -9,7 +9,13 @@ using System.Xml.Schema;
 
 namespace EmployeeWageComputation
 {
-    class CheckEmployee
+    public interface IEmployeeCheck
+    {
+        public void AddCompanyWage(string Comapny, int Emp_Rate_Per_Hour, int Num_of_Working_Days, int Max_Hours_In_Month);
+        public void EmployeeCheck();
+        public int GetTotalWage(string Comapny);
+    }
+    public class CheckEmployee
     {
         private  int Num_of_Working_Days ;
         private  int Max_Hrs_In_Month ;
@@ -37,7 +43,7 @@ namespace EmployeeWageComputation
             return $"Company: " +this.company  + "EmpratperHour: " +this.Emp_Rate_Per_Hour +"Days"+this.Num_of_Working_Days+"Max Working Hrs" +this.Max_Hrs_In_Month;
         }
 
-        public class EmpWageBuliderArray
+        public class EmpWageBuliderArray : IEmployeeCheck 
         {
             List<CheckEmployee> list;
             public const int Emp_Present = 1;
@@ -75,6 +81,15 @@ namespace EmployeeWageComputation
                     //Console.WriteLine(this.CheckEmpWageArray[i].tostring());
                 }
             }
+            public void CheckEmployee()
+            {
+                foreach(CheckEmployee emp in this.list)
+                {
+                    emp.setTotalEmpWages(this.EmployeeCheck(emp));
+                    Console.WriteLine(emp.ToString());  
+                }
+            }
+
             private int EmployeeCheck(CheckEmployee checkEmployee)
             {
                 int empHrs = 0, TotalEmpHrs = 0, totalWorkingDays = 0,TotalEmpWage=0;
@@ -108,6 +123,16 @@ namespace EmployeeWageComputation
                 Console.WriteLine("Comapany: {0} Number of working days: {1} Max working Hours: {2} Toayal Emp Wage: {3} ", checkEmployee.company, checkEmployee.Emp_Rate_Per_Hour, checkEmployee.Num_of_Working_Days, checkEmployee.Max_Hrs_In_Month);
 
                 return TotalEmpHrs * checkEmployee.Emp_Rate_Per_Hour;
+            }
+
+            public void AddCompanyWage(string Comapny, int Emp_Rate_Per_Hour, int Num_of_Working_Days, int Max_Hours_In_Month)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int GetTotalWage(string Comapny)
+            {
+                throw new NotImplementedException();
             }
             //public string toString()
             //{
