@@ -20,6 +20,7 @@ namespace EmployeeWageComputation
             checkemployee.addCompanyEmpWage("Wipro", 20, 24, 16);
             checkemployee.addCompanyEmpWage("TCS", 20, 25, 10);
             checkemployee.EmployeeCheck();
+            Console.WriteLine("Total EmpWages: " + checkemployee.GetTotalWageBasedOnCompany("Deloitte"));
             Console.ReadLine();
         }
     }

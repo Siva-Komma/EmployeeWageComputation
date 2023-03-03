@@ -42,6 +42,7 @@ namespace EmployeeWageComputation
             List<CheckEmployee> list;
             public const int Emp_Present = 1;
             public const int Is_Part_Time = 2;
+            Dictionary<string, CheckEmployee> dict;
             //private int numOfCompany = 0;
            // private CheckEmployee[] CheckEmpWageArray;
 
@@ -49,13 +50,19 @@ namespace EmployeeWageComputation
             {
                 //this.CheckEmpWageArray = new CheckEmployee[5];
                 list = new List<CheckEmployee>();
+                dict= new Dictionary<string, CheckEmployee>();  
             }
             public void addCompanyEmpWage(string company, int Emp_Rate_Per_Hour,int Num_of_Working_Days, int Max_Hrs_In_Month)
             {
                 CheckEmployee emp = new CheckEmployee(company,Emp_Rate_Per_Hour,Num_of_Working_Days,Max_Hrs_In_Month);
                 list.Add(emp);
+                dict.Add(company, emp);
                // CheckEmpWageArray[this.numOfCompany] = new CheckEmployee(company, Emp_Rate_Per_Hour, Num_of_Working_Days, Max_Hrs_In_Month);
                // numOfCompany++;
+            }
+            public int GetTotalWageBasedOnCompany(string Company)
+            {
+                return dict[Company].TotalEmpWage;
             }
             public void EmployeeCheck()
             {
